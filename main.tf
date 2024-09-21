@@ -57,7 +57,7 @@ data "aws_ami" "amazon_linux" {
 
   filter {
     name   = "name"
-    values = ["*al2023-ami-2023.4.*-kernel-6.1-x86_64*"]
+    values = ["amzn2-ami-hvm-*"]
   }
 
   filter {
@@ -94,7 +94,7 @@ EOF
 }
 
 resource "aws_iam_instance_profile" "test_profile" {
-  name = "test_profile"
+  name = "test_profile1"
   role = "${aws_iam_role.test_role.name}"
 }
 
@@ -117,7 +117,7 @@ EOF
 }
 
 resource "aws_instance" "web" {
-  ami             = "ami-04c913012f8977029"
+  ami             = "ami-0ebfd941bbafe70c6"
   instance_type   = "t2.medium" 
   key_name        = var.key_name
   iam_instance_profile = "${aws_iam_instance_profile.test_profile.name}"
